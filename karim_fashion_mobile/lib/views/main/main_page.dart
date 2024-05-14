@@ -42,10 +42,9 @@ class _MainPageState extends State<MainPage> {
         items: _navItems,
         currentIndex: _currIndex,
         onTap: (index) {
-          // TODO: push to keranjang
-          // if (index == 2) {
-          //   Navigator.
-          // }
+          if (index == 2) {
+            Navigator.pushNamed(context, "/keranjang");
+          }
           setState(() => _currIndex = index);
         },
         selectedItemColor: AppConstants.primary,

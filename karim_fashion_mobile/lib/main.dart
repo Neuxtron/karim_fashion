@@ -1,8 +1,10 @@
 import 'package:karim_fashion/auth_check.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:karim_fashion/view_models/keranjang_view_model.dart';
 import 'package:karim_fashion/view_models/produk_view_model.dart';
 import 'package:karim_fashion/views/deskripsi/deskripsi_page.dart';
+import 'package:karim_fashion/views/keranjang/keranjang_page.dart';
 import 'package:karim_fashion/views/main/main_page.dart';
 import 'package:karim_fashion/views/signup/signup_page.dart';
 import 'package:provider/provider.dart';
@@ -19,6 +21,7 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: [
         ChangeNotifierProvider(create: (context) => ProdukViewModel()),
+        ChangeNotifierProvider(create: (context) => KeranjangViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -26,6 +29,9 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           useMaterial3: true,
           fontFamily: "Poppins",
+          checkboxTheme: CheckboxThemeData(
+            fillColor: MaterialStatePropertyAll(Colors.black26),
+          ),
           colorScheme: ColorScheme.fromSwatch(
             backgroundColor: Colors.white,
           ),
@@ -36,6 +42,7 @@ class MyApp extends StatelessWidget {
           "/signup": (context) => const SignupPage(),
           "/main": (context) => const MainPage(),
           "/deskripsi": (context) => const DeskripsiPage(),
+          "/keranjang": (context) => const KeranjangPage(),
         },
       ),
     );
