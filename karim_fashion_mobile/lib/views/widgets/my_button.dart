@@ -1,7 +1,7 @@
 import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 
-class CcButton extends StatelessWidget {
+class MyButton extends StatelessWidget {
   final Function()? onPressed;
   final String text;
   final EdgeInsetsGeometry margin;
@@ -11,7 +11,7 @@ class CcButton extends StatelessWidget {
   final TextStyle? textStyle;
   final double? minWidth;
 
-  const CcButton({
+  const MyButton({
     super.key,
     required this.onPressed,
     required this.text,

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
-import 'package:karim_fashion/views/widgets/cc_search_input.dart';
+import 'package:karim_fashion/views/widgets/my_search_input.dart';
 
 class HomeSearch extends StatelessWidget {
   final TextEditingController controller;
@@ -17,7 +17,7 @@ class HomeSearch extends StatelessWidget {
     return Row(
       children: [
         Expanded(
-          child: CcSearchInput(
+          child: MySearchInput(
             controller: controller,
             hintText: "Search...",
             onSubmit: onSearch,

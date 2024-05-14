@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
 
-class CcSearchInput extends StatelessWidget {
+class MySearchInput extends StatelessWidget {
   final TextEditingController controller;
   final String hintText;
   final TextInputType? keyboardType;
   final EdgeInsetsGeometry margin;
   final Function()? onSubmit;
 
-  const CcSearchInput({
+  const MySearchInput({
     super.key,
     this.keyboardType,
     this.onSubmit,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karim_fashion/views/widgets/cc_button.dart';
+import 'package:karim_fashion/views/widgets/my_button.dart';
 import 'package:karim_fashion/views/widgets/form_input.dart';
 
 class SignupPage extends StatefulWidget {
@@ -70,7 +70,7 @@ class _SignupPageState extends State<SignupPage> {
                 controller: _kPasswordController,
                 obscureText: true,
               ),
-              CcButton(
+              MyButton(
                 onPressed: submitSignup,
                 margin: const EdgeInsets.only(top: 50),
                 text: "Daftar",

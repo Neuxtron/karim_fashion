@@ -13,24 +13,38 @@ class LoginPage extends StatelessWidget {
         toolbarHeight: 0,
         backgroundColor: AppConstants.primary,
       ),
-      body: Align(
-        alignment: Alignment.bottomCenter,
-        child: SingleChildScrollView(
-          child: Container(
-            width: double.infinity,
-            padding: const EdgeInsets.symmetric(
-              horizontal: 24,
-              vertical: 32,
-            ),
-            decoration: const BoxDecoration(
-              color: Colors.white,
-              borderRadius: BorderRadius.vertical(
-                top: Radius.circular(16),
+      body: Stack(
+        children: [
+          Column(
+            children: [
+              const SizedBox(height: 60),
+              Image.asset(
+                "assets/images/logo.png",
+                height: 100,
+                width: double.infinity,
+              ),
+            ],
+          ),
+          Align(
+            alignment: Alignment.bottomCenter,
+            child: SingleChildScrollView(
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(
+                  horizontal: 24,
+                  vertical: 32,
+                ),
+                decoration: const BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.vertical(
+                    top: Radius.circular(16),
+                  ),
+                ),
+                child: const KontenLogin(),
               ),
             ),
-            child: const KontenLogin(),
           ),
-        ),
+        ],
       ),
     );
   }

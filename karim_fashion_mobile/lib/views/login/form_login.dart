@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:karim_fashion/views/widgets/cc_button.dart';
+import 'package:karim_fashion/views/widgets/my_button.dart';
 import 'package:karim_fashion/views/widgets/form_input.dart';
 
 class FormLogin extends StatefulWidget {
@@ -52,7 +52,7 @@ class FormLoginState extends State<FormLogin> {
             ),
           ),
         ),
-        CcButton(
+        MyButton(
           margin: const EdgeInsets.only(top: 48, bottom: 12),
           minWidth: double.infinity,
           onPressed: submitLogin,

@@ -41,7 +41,13 @@ class _MainPageState extends State<MainPage> {
       bottomNavigationBar: BottomNavigationBar(
         items: _navItems,
         currentIndex: _currIndex,
-        onTap: (index) => setState(() => _currIndex = index),
+        onTap: (index) {
+          // TODO: push to keranjang
+          // if (index == 2) {
+          //   Navigator.
+          // }
+          setState(() => _currIndex = index);
+        },
         selectedItemColor: AppConstants.primary,
         unselectedItemColor: const Color(0xFFAAB9C6),
         iconSize: 40,

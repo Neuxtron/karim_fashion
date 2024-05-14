@@ -14,6 +14,11 @@ class ProdukItem extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: InkWell(
+        onTap: () => Navigator.pushNamed(
+          context,
+          "/deskripsi",
+          arguments: model,
+        ),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
