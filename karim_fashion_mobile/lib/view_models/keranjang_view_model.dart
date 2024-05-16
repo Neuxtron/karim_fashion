@@ -5,6 +5,7 @@ import 'package:karim_fashion/models/produk_model.dart';
 class KeranjangViewModel extends ChangeNotifier {
   List<KeranjangModel> _listKeranjang = [
     KeranjangModel(
+      ukuran: "M",
       produk: ProdukModel(
         gambar:
             "https://www.portalindonesia.co.id/wp-content/uploads/2020/02/Baju-Bayi-Libby-3.jpg",
@@ -18,6 +19,7 @@ class KeranjangViewModel extends ChangeNotifier {
       ),
     ),
     KeranjangModel(
+      ukuran: "M",
       produk: ProdukModel(
         gambar:
             "https://www.portalindonesia.co.id/wp-content/uploads/2020/02/Baju-Bayi-Libby-3.jpg",

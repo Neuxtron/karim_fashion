@@ -44,6 +44,7 @@ class _MainPageState extends State<MainPage> {
         onTap: (index) {
           if (index == 2) {
             Navigator.pushNamed(context, "/keranjang");
+            return;
           }
           setState(() => _currIndex = index);
         },

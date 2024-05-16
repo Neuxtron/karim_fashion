@@ -7,17 +7,6 @@ import 'package:karim_fashion/views/deskripsi/popup_keranjang.dart';
 class DeskripsiPage extends StatelessWidget {
   const DeskripsiPage({super.key});
 
-  void masukkanKeranjang(BuildContext context, ProdukModel produk) {
-    showDialog(
-      context: context,
-      builder: (context) {
-        return PopupKeranjang(
-          produk: produk,
-        );
-      },
-    );
-  }
-
   @override
   Widget build(BuildContext context) {
     final produk = ModalRoute.of(context)!.settings.arguments as ProdukModel;
@@ -87,7 +76,10 @@ class DeskripsiPage extends StatelessWidget {
                             showDialog(
                               context: context,
                               builder: (context) {
-                                return PopupKeranjang(produk: produk);
+                                return PopupKeranjang(
+                                  produk: produk,
+                                  langsungCheckout: false,
+                                );
                               },
                             );
                           },
@@ -115,7 +107,17 @@ class DeskripsiPage extends StatelessWidget {
                         height: 60,
                         color: AppConstants.secondary,
                         child: InkWell(
-                          onTap: () {},
+                          onTap: () {
+                            showDialog(
+                              context: context,
+                              builder: (context) {
+                                return PopupKeranjang(
+                                  produk: produk,
+                                  langsungCheckout: true,
+                                );
+                              },
+                            );
+                          },
                           child: Column(
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [

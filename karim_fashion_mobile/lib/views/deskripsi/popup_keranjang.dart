@@ -7,7 +7,13 @@ import 'package:karim_fashion/views/widgets/my_button.dart';
 
 class PopupKeranjang extends StatefulWidget {
   final ProdukModel produk;
-  const PopupKeranjang({super.key, required this.produk});
+  final bool langsungCheckout;
+
+  const PopupKeranjang({
+    super.key,
+    required this.produk,
+    required this.langsungCheckout,
+  });
 
   @override
   State<PopupKeranjang> createState() => _PopupKeranjangState();
@@ -154,7 +160,9 @@ class _PopupKeranjangState extends State<PopupKeranjang> {
                 onPressed: submitKeranjang,
                 margin: const EdgeInsets.all(12),
                 minWidth: double.infinity,
-                text: "Masukkan Keranjang",
+                text: widget.langsungCheckout
+                    ? "Beli Sekarang"
+                    : "Masukkan Keranjang",
               ),
             ],
           ),

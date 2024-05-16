@@ -30,7 +30,12 @@ class MyApp extends StatelessWidget {
           useMaterial3: true,
           fontFamily: "Poppins",
           checkboxTheme: CheckboxThemeData(
-            fillColor: MaterialStatePropertyAll(Colors.black26),
+            fillColor: MaterialStateProperty.resolveWith((states) {
+              if (states.contains(MaterialState.selected)) {
+                return AppConstants.primary;
+              }
+              return Colors.black26;
+            }),
           ),
           colorScheme: ColorScheme.fromSwatch(
             backgroundColor: Colors.white,

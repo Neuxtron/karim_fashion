@@ -3,6 +3,7 @@ import 'package:intl/intl.dart';
 import 'package:karim_fashion/models/keranjang_model.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:karim_fashion/view_models/keranjang_view_model.dart';
+import 'package:karim_fashion/views/keranjang/keranjang_list_view.dart';
 import 'package:provider/provider.dart';
 
 class KeranjangPage extends StatefulWidget {
@@ -13,6 +14,9 @@ class KeranjangPage extends StatefulWidget {
 }
 
 class _KeranjangPageState extends State<KeranjangPage> {
+  bool _semua = false;
+  bool _loading = false;
+
   List<KeranjangModel> get _listKeranjang =>
       context.read<KeranjangViewModel>().listKeranjang;
 
@@ -26,7 +30,24 @@ class _KeranjangPageState extends State<KeranjangPage> {
     return total;
   }
 
+  List<KeranjangModel> get _listOrder {
+    final List<KeranjangModel> listOrder = [];
+
+    for (var keranjang in _listKeranjang) {
+      if (keranjang.isChecked) listOrder.add(keranjang);
+    }
+
+    return listOrder;
+  }
+
   String get _totalString => NumberFormat('###,###,###').format(_total);
+
+  void updateKeranjang(int index, bool isChecked, int amount) {
+    if (!isChecked) _semua = false;
+    _listKeranjang[index].isChecked = isChecked;
+    _listKeranjang[index].amount = amount;
+    setState(() {});
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -34,71 +55,75 @@ class _KeranjangPageState extends State<KeranjangPage> {
       appBar: AppBar(
         title: const Text("Keranjang Saya"),
       ),
-      body: Stack(
+      body: Column(
         children: [
-          // ListView.builder(
-          //   itemBuilder: itemBuilder,
-          // ),
-          Column(
-            mainAxisAlignment: MainAxisAlignment.end,
-            children: [
-              Container(
-                height: 70,
-                decoration: BoxDecoration(
-                  border: Border.all(color: Colors.black12),
+          KeranjangListView(
+            listKeranjang: _listKeranjang,
+            updateKeranjang: updateKeranjang,
+            loading: _loading,
+          ),
+          Container(
+            height: 70,
+            decoration: BoxDecoration(
+              border: Border.all(color: Colors.black12),
+            ),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      Checkbox(
+                        value: _semua,
+                        onChanged: (value) {
+                          _semua = !_semua;
+                          for (var trolley in _listKeranjang) {
+                            final index = _listKeranjang.indexOf(trolley);
+                            _listKeranjang[index].isChecked = _semua;
+                            setState(() {});
+                          }
+                        },
+                      ),
+                      const Text(
+                        "Semua",
+                        style: TextStyle(color: Colors.black54),
+                      ),
+                    ],
+                  ),
                 ),
-                child: Row(
-                  children: [
-                    Expanded(
-                      child: Row(
-                        children: [
-                          Checkbox(
-                            value: false,
-                            onChanged: (value) {},
-                          ),
-                          const Text(
-                            "Semua",
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                        ],
+                Expanded(
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Text(
+                        "Total ",
+                        style: TextStyle(color: Colors.black54),
                       ),
-                    ),
-                    Expanded(
-                      child: Row(
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          const Text(
-                            "Total ",
-                            style: TextStyle(color: Colors.black54),
-                          ),
-                          Text(
-                            "Rp$_totalString",
-                            style: const TextStyle(
-                              color: AppConstants.danger,
-                            ),
-                          ),
-                        ],
+                      Text(
+                        "Rp$_totalString",
+                        style: const TextStyle(
+                          color: AppConstants.danger,
+                        ),
                       ),
-                    ),
-                    Expanded(
-                      child: Container(
-                        height: double.infinity,
-                        color: AppConstants.secondary,
-                        child: Center(
-                          child: InkWell(
-                            onTap: () {},
-                            child: Text(
-                              "Checkout (${_listKeranjang.length})",
-                              style: const TextStyle(color: Colors.white),
-                            ),
-                          ),
+                    ],
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    height: double.infinity,
+                    color: AppConstants.secondary,
+                    child: Center(
+                      child: InkWell(
+                        onTap: () {},
+                        child: Text(
+                          "Checkout (${_listOrder.length})",
+                          style: const TextStyle(color: Colors.white),
                         ),
                       ),
                     ),
-                  ],
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),
