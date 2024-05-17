@@ -69,7 +69,7 @@ class AkunPage extends StatelessWidget {
               ),
               const SizedBox(height: 30),
               InkWell(
-                onTap: () {},
+                onTap: () => Navigator.pushNamed(context, "/info_akun"),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
                   child: Row(
