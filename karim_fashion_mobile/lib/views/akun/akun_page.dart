@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:karim_fashion/view_models/user_view_model.dart';
-import 'package:karim_fashion/views/widgets/foto_profil.dart';
+import 'foto_profil.dart';
 import 'package:provider/provider.dart';
 
 class AkunPage extends StatelessWidget {

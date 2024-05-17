@@ -7,14 +7,16 @@ class FormInput extends StatelessWidget {
   final String? hintText;
   final TextInputType keyboardType;
   final bool obscureText;
+  final bool multiline;
 
   const FormInput({
     super.key,
     required this.label,
     required this.controller,
     this.keyboardType = TextInputType.text,
-    this.obscureText = false,
     this.hintText,
+    this.obscureText = false,
+    this.multiline = false,
   });
 
   @override
@@ -28,12 +30,17 @@ class FormInput extends StatelessWidget {
         ),
         TextField(
           controller: controller,
-          keyboardType: keyboardType,
+          keyboardType: multiline ? TextInputType.multiline : keyboardType,
           style: const TextStyle(fontSize: 14),
           obscureText: obscureText,
           cursorColor: AppConstants.primary,
+          minLines: multiline ? 4 : 1,
+          maxLines: multiline ? 4 : 1,
           decoration: InputDecoration(
-            contentPadding: const EdgeInsets.symmetric(horizontal: 16),
+            contentPadding: const EdgeInsets.symmetric(
+              horizontal: 16,
+              vertical: 15,
+            ),
             hintText: hintText ?? "Masukkan $label",
             hintStyle: const TextStyle(color: Colors.grey),
             enabledBorder: buildBorder(),

@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:karim_fashion/views/signup/kecamatan_dropdown.dart';
 import 'package:karim_fashion/views/widgets/my_button.dart';
 import 'package:karim_fashion/views/widgets/form_input.dart';
 
@@ -15,6 +16,9 @@ class _SignupPageState extends State<SignupPage> {
   final _noHpController = TextEditingController();
   final _passwordController = TextEditingController();
   final _kPasswordController = TextEditingController();
+  final _alamatController = TextEditingController();
+
+  int _idKecamatan = 1;
 
   void submitSignup() {}
 
@@ -26,6 +30,7 @@ class _SignupPageState extends State<SignupPage> {
     _noHpController.dispose();
     _passwordController.dispose();
     _kPasswordController.dispose();
+    _alamatController.dispose();
   }
 
   @override
@@ -40,10 +45,13 @@ class _SignupPageState extends State<SignupPage> {
           padding: const EdgeInsets.symmetric(horizontal: 36),
           child: Column(
             children: [
-              // TODO: foto profil
               const Text(
                 "Signup",
                 style: TextStyle(fontSize: 22),
+              ),
+              Padding(
+                padding: const EdgeInsets.only(top: 30),
+                child: Image.asset("assets/images/logo.png", height: 80),
               ),
               const SizedBox(height: 16), //----- Jarak
               FormInput(
@@ -70,6 +78,16 @@ class _SignupPageState extends State<SignupPage> {
                 hintText: "Ketik ulang password",
                 controller: _kPasswordController,
                 obscureText: true,
+              ),
+              FormInput(
+                label: "Alamat",
+                hintText: "Masukkan alamat",
+                controller: _alamatController,
+                multiline: true,
+              ),
+              KecamatanDropdown(
+                value: _idKecamatan,
+                onChange: (value) => setState(() => _idKecamatan = value!),
               ),
               MyButton(
                 onPressed: submitSignup,
