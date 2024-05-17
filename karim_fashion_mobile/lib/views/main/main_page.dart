@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
+import 'package:karim_fashion/views/akun/akun_page.dart';
 import 'package:karim_fashion/views/home/home_page.dart';
 
 class MainPage extends StatefulWidget {
@@ -13,9 +14,8 @@ class _MainPageState extends State<MainPage> {
   int _currIndex = 0;
 
   final _pages = const [
-    Center(child: HomePage()),
-    Center(child: Text("Profil")),
-    Center(child: Text("Keranjang")),
+    HomePage(),
+    AkunPage(),
   ];
 
   final List<BottomNavigationBarItem> _navItems = const [
@@ -33,10 +33,37 @@ class _MainPageState extends State<MainPage> {
     ),
   ];
 
+  final _appBars = [
+    AppBar(
+      backgroundColor: AppConstants.primary,
+      foregroundColor: Colors.white,
+      title: Row(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          Image.asset(
+            "assets/images/logo.png",
+            height: 30,
+          ),
+          const SizedBox(width: 10),
+          const Text(
+            "Karim Fashion",
+            style: TextStyle(fontSize: 16),
+          ),
+        ],
+      ),
+    ),
+    AppBar(
+      title: const Text(
+        "Akun Saya",
+        style: TextStyle(fontSize: 18),
+      ),
+    ),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: buildAppbar(),
+      appBar: _appBars[_currIndex],
       body: _pages[_currIndex],
       bottomNavigationBar: BottomNavigationBar(
         items: _navItems,
@@ -51,27 +78,6 @@ class _MainPageState extends State<MainPage> {
         selectedItemColor: AppConstants.primary,
         unselectedItemColor: const Color(0xFFAAB9C6),
         iconSize: 40,
-      ),
-    );
-  }
-
-  PreferredSizeWidget buildAppbar() {
-    return AppBar(
-      backgroundColor: AppConstants.primary,
-      foregroundColor: Colors.white,
-      title: Row(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Image.asset(
-            "assets/images/logo.png",
-            height: 30,
-          ),
-          const SizedBox(width: 10), //----- Jarak
-          const Text(
-            "Karim Fashion",
-            style: TextStyle(fontSize: 16),
-          ),
-        ],
       ),
     );
   }
