@@ -7,6 +7,7 @@ import 'package:karim_fashion/view_models/user_view_model.dart';
 import 'package:karim_fashion/views/checkout/checkout_page.dart';
 import 'package:karim_fashion/views/deskripsi/deskripsi_page.dart';
 import 'package:karim_fashion/views/info_akun/info_akun_page.dart';
+import 'package:karim_fashion/views/keamanan_akun/keamanan_akun_page.dart';
 import 'package:karim_fashion/views/keranjang/keranjang_page.dart';
 import 'package:karim_fashion/views/main/main_page.dart';
 import 'package:karim_fashion/views/signup/signup_page.dart';
@@ -54,6 +55,7 @@ class MyApp extends StatelessWidget {
           "/keranjang": (context) => const KeranjangPage(),
           "/checkout": (context) => const CheckoutPage(),
           "/info_akun": (context) => const InfoAkunPage(),
+          "/keamanan_akun": (context) => const KeamananAkunPage(),
         },
       ),
     );

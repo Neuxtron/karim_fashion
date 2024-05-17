@@ -99,7 +99,7 @@ class AkunPage extends StatelessWidget {
                 ),
               ),
               InkWell(
-                onTap: () {},
+                onTap: () => Navigator.pushNamed(context, "/keamanan_akun"),
                 child: Padding(
                   padding: const EdgeInsets.symmetric(vertical: 25),
                   child: Row(
