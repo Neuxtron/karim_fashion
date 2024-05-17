@@ -3,6 +3,8 @@ import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/view_models/keranjang_view_model.dart';
 import 'package:karim_fashion/view_models/produk_view_model.dart';
+import 'package:karim_fashion/view_models/user_view_model.dart';
+import 'package:karim_fashion/views/checkout/checkout_page.dart';
 import 'package:karim_fashion/views/deskripsi/deskripsi_page.dart';
 import 'package:karim_fashion/views/keranjang/keranjang_page.dart';
 import 'package:karim_fashion/views/main/main_page.dart';
@@ -22,6 +24,7 @@ class MyApp extends StatelessWidget {
       providers: [
         ChangeNotifierProvider(create: (context) => ProdukViewModel()),
         ChangeNotifierProvider(create: (context) => KeranjangViewModel()),
+        ChangeNotifierProvider(create: (context) => UserViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -48,6 +51,7 @@ class MyApp extends StatelessWidget {
           "/main": (context) => const MainPage(),
           "/deskripsi": (context) => const DeskripsiPage(),
           "/keranjang": (context) => const KeranjangPage(),
+          "/checkout": (context) => const CheckoutPage(),
         },
       ),
     );

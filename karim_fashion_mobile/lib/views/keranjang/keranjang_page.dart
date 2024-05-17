@@ -111,9 +111,16 @@ class _KeranjangPageState extends State<KeranjangPage> {
                   child: Container(
                     height: double.infinity,
                     color: AppConstants.secondary,
-                    child: Center(
-                      child: InkWell(
-                        onTap: () {},
+                    child: InkWell(
+                      onTap: () {
+                        if (_listOrder.isEmpty) return;
+                        Navigator.pushNamed(
+                          context,
+                          "/checkout",
+                          arguments: _listOrder,
+                        );
+                      },
+                      child: Center(
                         child: Text(
                           "Checkout (${_listOrder.length})",
                           style: const TextStyle(color: Colors.white),

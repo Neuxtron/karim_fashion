@@ -40,6 +40,7 @@ class _SignupPageState extends State<SignupPage> {
           padding: const EdgeInsets.symmetric(horizontal: 36),
           child: Column(
             children: [
+              // TODO: foto profil
               const Text(
                 "Signup",
                 style: TextStyle(fontSize: 22),
