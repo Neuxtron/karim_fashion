@@ -9,7 +9,6 @@ class UserViewModel extends ChangeNotifier {
     alamat:
         "Jln Bunga Ncole 14B NO.51, Kemengan Tani, Medan Tuntungan MEDAN TUNTUNGAN, KOTA MEDAN,  SUMATERA UTARA, ID 20137",
     idKecamatan: 1,
-    gambar: "",
   );
 
   UserModel get currentUser => _currentUser;

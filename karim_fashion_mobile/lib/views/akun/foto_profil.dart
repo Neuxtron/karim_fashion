@@ -1,8 +1,7 @@
 import 'package:flutter/material.dart';
 
 class FotoProfil extends StatelessWidget {
-  final String url;
-  const FotoProfil({super.key, required this.url});
+  const FotoProfil({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -11,6 +11,7 @@ import 'package:karim_fashion/views/keamanan_akun/keamanan_akun_page.dart';
 import 'package:karim_fashion/views/keranjang/keranjang_page.dart';
 import 'package:karim_fashion/views/main/main_page.dart';
 import 'package:karim_fashion/views/signup/signup_page.dart';
+import 'package:karim_fashion/views/update_akun/update_akun_page.dart';
 import 'package:provider/provider.dart';
 
 void main() {
@@ -56,6 +57,7 @@ class MyApp extends StatelessWidget {
           "/checkout": (context) => const CheckoutPage(),
           "/info_akun": (context) => const InfoAkunPage(),
           "/keamanan_akun": (context) => const KeamananAkunPage(),
+          "/update_akun": (context) => const UpdateAkunPage(),
         },
       ),
     );

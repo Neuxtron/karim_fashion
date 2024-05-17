@@ -20,7 +20,7 @@ class AkunPage extends StatelessWidget {
           ),
           child: Row(
             children: [
-              FotoProfil(url: user.gambar),
+              const FotoProfil(),
               Expanded(
                 child: Padding(
                   padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -47,7 +47,7 @@ class AkunPage extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () {},
+                onPressed: () => Navigator.pushNamed(context, "/update_akun"),
                 iconSize: 40,
                 icon: const Icon(Icons.edit_outlined),
               ),

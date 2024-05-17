@@ -4,7 +4,6 @@ class UserModel {
   final String hp;
   final String alamat;
   final int idKecamatan;
-  final String gambar;
 
   UserModel({
     required this.username,
@@ -12,6 +11,5 @@ class UserModel {
     required this.hp,
     required this.alamat,
     required this.idKecamatan,
-    required this.gambar,
   });
 }
