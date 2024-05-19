@@ -7,4 +7,9 @@ class AppConstants {
   static const secondary = Color(0xFFF2994A);
   static const primary = Color(0xFF002C55);
   static const danger = Color(0xFFFF4A4A);
+
+  static const baseUrl = "http://192.168.18.14:3000";
+  static String? token;
 }
+
+enum ServerStatus { normal, loading, error }

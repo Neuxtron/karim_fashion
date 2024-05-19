@@ -29,11 +29,11 @@ class AlamatSection extends StatelessWidget {
                 children: [
                   const Text("Alamat Pengiriman"),
                   Text(
-                    "${user.username} | ${user.hp}",
+                    "${user?.username ?? ""} | ${user?.hp ?? ""}",
                     style: const TextStyle(fontSize: 12),
                   ),
                   Text(
-                    user.alamat,
+                    user?.alamat ?? "",
                     style: const TextStyle(fontSize: 12),
                   ),
                 ],

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:karim_fashion/models/produk_model.dart';
+import 'package:karim_fashion/models/stok_model.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:karim_fashion/views/deskripsi/ukuran_item.dart';
 import 'package:karim_fashion/views/widgets/my_button.dart';
@@ -22,7 +23,7 @@ class PopupKeranjang extends StatefulWidget {
 class _PopupKeranjangState extends State<PopupKeranjang> {
   String get _hargaString =>
       NumberFormat("###,###,###").format(widget.produk.harga);
-  final _listUkuran = ["S", "M", "L", "XL", "XXL"];
+  List<StokModel> get _listUkuran => widget.produk.listUkuran;
 
   int _indexUkuran = 0;
   int _jumlah = 1;
@@ -60,7 +61,7 @@ class _PopupKeranjangState extends State<PopupKeranjang> {
                             ),
                           ),
                           Text(
-                            "Stok: ${widget.produk.stok}",
+                            "Stok: ${_listUkuran[_indexUkuran].stok}",
                             style: const TextStyle(
                                 color: Colors.black38, fontSize: 20),
                           ),
@@ -89,7 +90,7 @@ class _PopupKeranjangState extends State<PopupKeranjang> {
                           final ukuran = _listUkuran[index];
                           return UkuranItem(
                             active: _indexUkuran == index,
-                            text: ukuran,
+                            text: ukuran.nama,
                             onPressed: () {
                               setState(() => _indexUkuran = index);
                             },

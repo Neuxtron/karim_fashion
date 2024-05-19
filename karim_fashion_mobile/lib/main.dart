@@ -1,6 +1,8 @@
 import 'package:karim_fashion/auth_check.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
 import 'package:flutter/material.dart';
+import 'package:karim_fashion/view_models/daerah_view_model.dart';
+import 'package:karim_fashion/view_models/kategori_view_model.dart';
 import 'package:karim_fashion/view_models/keranjang_view_model.dart';
 import 'package:karim_fashion/view_models/produk_view_model.dart';
 import 'package:karim_fashion/view_models/user_view_model.dart';
@@ -28,6 +30,8 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => ProdukViewModel()),
         ChangeNotifierProvider(create: (context) => KeranjangViewModel()),
         ChangeNotifierProvider(create: (context) => UserViewModel()),
+        ChangeNotifierProvider(create: (context) => DaerahViewModel()),
+        ChangeNotifierProvider(create: (context) => KategoriViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,

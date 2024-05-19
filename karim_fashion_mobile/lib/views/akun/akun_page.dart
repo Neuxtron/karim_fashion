@@ -28,18 +28,18 @@ class AkunPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        user.username,
+                        user?.username ?? "",
                         style: const TextStyle(
                           fontWeight: FontWeight.bold,
                           fontSize: 20,
                         ),
                       ),
                       Text(
-                        user.hp,
+                        user?.hp ?? "",
                         style: const TextStyle(fontSize: 12),
                       ),
                       Text(
-                        user.email,
+                        user?.email ?? "",
                         style: const TextStyle(fontSize: 12),
                       ),
                     ],
@@ -130,7 +130,17 @@ class AkunPage extends StatelessWidget {
               ),
             ],
           ),
-        )
+        ),
+        const SizedBox(height: 20),
+        TextButton(
+          onPressed: () {
+            context.read<UserViewModel>().logout();
+          },
+          child: const Text(
+            "Logout",
+            style: TextStyle(color: Colors.red),
+          ),
+        ),
       ],
     );
   }

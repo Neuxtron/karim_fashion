@@ -17,6 +17,7 @@ class DeskripsiPage extends StatelessWidget {
         child: Stack(
           children: [
             Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Center(
                   child: Image.network(
@@ -41,7 +42,6 @@ class DeskripsiPage extends StatelessWidget {
                         padding: const EdgeInsets.symmetric(vertical: 10),
                         child: Text(produk.nama),
                       ),
-                      Text("${produk.terjual} Terjual"),
                     ],
                   ),
                 ),

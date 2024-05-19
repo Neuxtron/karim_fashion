@@ -28,16 +28,16 @@ class InfoAkunPage extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 20),
             child: InfoItem(
               label: "Username",
-              value: user.username,
+              value: user?.username ?? "",
             ),
           ),
           InfoItem(
             label: "Email",
-            value: user.email,
+            value: user?.email ?? "",
           ),
           InfoItem(
             label: "No HP",
-            value: user.hp,
+            value: user?.hp ?? "",
           ),
         ],
       ),

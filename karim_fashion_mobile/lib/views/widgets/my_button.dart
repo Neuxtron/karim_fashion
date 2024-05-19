@@ -10,6 +10,7 @@ class MyButton extends StatelessWidget {
   final bool rounded;
   final TextStyle? textStyle;
   final double? minWidth;
+  final bool loading;
 
   const MyButton({
     super.key,
@@ -21,6 +22,7 @@ class MyButton extends StatelessWidget {
     this.textColor = Colors.white,
     this.margin = EdgeInsets.zero,
     this.color = AppConstants.secondary,
+    this.loading = false,
   });
 
   @override
@@ -28,7 +30,7 @@ class MyButton extends StatelessWidget {
     return Padding(
       padding: margin,
       child: MaterialButton(
-        onPressed: onPressed,
+        onPressed: loading ? null : onPressed,
         color: color,
         textColor: textColor,
         shape: rounded
@@ -37,6 +39,7 @@ class MyButton extends StatelessWidget {
               )
             : null,
         minWidth: minWidth,
+        disabledColor: color.withOpacity(.5),
         child: Text(text, style: textStyle),
       ),
     );

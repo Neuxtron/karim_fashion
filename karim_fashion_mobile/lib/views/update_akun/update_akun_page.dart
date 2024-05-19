@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:karim_fashion/models/kecamatan_model.dart';
+import 'package:karim_fashion/models/provinsi_model.dart';
 import 'package:karim_fashion/models/user_model.dart';
+import 'package:karim_fashion/view_models/daerah_view_model.dart';
 import 'package:karim_fashion/view_models/user_view_model.dart';
-import 'package:karim_fashion/views/signup/kecamatan_dropdown.dart';
+import 'package:karim_fashion/views/widgets/my_dropdown.dart';
 import 'package:karim_fashion/views/widgets/my_button.dart';
 import 'package:karim_fashion/views/widgets/form_input.dart';
 import 'package:provider/provider.dart';
@@ -19,15 +22,38 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
   final _noHpController = TextEditingController();
   final _alamatController = TextEditingController();
 
-  int _idKecamatan = 1;
+  String _idProvinsi = "1";
+  String _idKecamatan = "1";
+
+  List<ProvinsiModel> _listProvinsi = [];
+  List<KecamatanModel> _listKecamatan = [];
 
   void submitUpdate() {}
 
-  void updateInput(UserModel user) {
-    _usernameController.text = user.username;
-    _emailController.text = user.email;
-    _noHpController.text = user.hp;
-    _alamatController.text = user.alamat;
+  void getProvinsi() async {
+    _listProvinsi = await context.read<DaerahViewModel>().getProvinsi();
+    _idProvinsi = _listProvinsi.first.id;
+    getKecamatan();
+  }
+
+  void getKecamatan() async {
+    _listKecamatan =
+        await context.read<DaerahViewModel>().getKecamatan(_idProvinsi);
+    _idKecamatan = _listKecamatan.first.id;
+    setState(() {});
+  }
+
+  void updateInput(UserModel? user) {
+    _usernameController.text = user?.username ?? "";
+    _emailController.text = user?.email ?? "";
+    _noHpController.text = user?.hp ?? "";
+    _alamatController.text = user?.alamat ?? "";
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    getProvinsi();
   }
 
   @override
@@ -83,9 +109,27 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
                 controller: _alamatController,
                 multiline: true,
               ),
-              KecamatanDropdown(
+              MyDropdown(
+                value: _idProvinsi,
+                onChange: (value) => setState(() => _idProvinsi = value!),
+                label: "Provinsi",
+                item: _listProvinsi.map((e) {
+                  return DropdownMenuItem(
+                    value: e.id,
+                    child: Text(e.nama),
+                  );
+                }).toList(),
+              ),
+              MyDropdown(
                 value: _idKecamatan,
                 onChange: (value) => setState(() => _idKecamatan = value!),
+                label: "Kecamatan",
+                item: _listKecamatan.map((e) {
+                  return DropdownMenuItem(
+                    value: e.id,
+                    child: Text(e.nama),
+                  );
+                }).toList(),
               ),
               MyButton(
                 onPressed: submitUpdate,

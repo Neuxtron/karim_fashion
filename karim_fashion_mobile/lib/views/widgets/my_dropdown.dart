@@ -1,13 +1,17 @@
 import 'package:flutter/material.dart';
 
-class KecamatanDropdown extends StatelessWidget {
-  final Function(int? value) onChange;
-  final int value;
+class MyDropdown extends StatelessWidget {
+  final Function(String? value) onChange;
+  final String value;
+  final List<DropdownMenuItem<String>> item;
+  final String label;
 
-  const KecamatanDropdown({
+  const MyDropdown({
     super.key,
     required this.onChange,
     required this.value,
+    required this.item,
+    required this.label,
   });
 
   @override
@@ -15,9 +19,9 @@ class KecamatanDropdown extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        const Padding(
-          padding: EdgeInsets.only(top: 20, bottom: 5),
-          child: Text("Kecamatan"),
+        Padding(
+          padding: const EdgeInsets.only(top: 20, bottom: 5),
+          child: Text(label),
         ),
         Container(
           padding: const EdgeInsets.symmetric(horizontal: 15),
@@ -31,20 +35,7 @@ class KecamatanDropdown extends StatelessWidget {
               isExpanded: true,
               borderRadius: BorderRadius.circular(8),
               onChanged: onChange,
-              items: const [
-                DropdownMenuItem(
-                  value: 1,
-                  child: Text("One"),
-                ),
-                DropdownMenuItem(
-                  value: 2,
-                  child: Text("Two"),
-                ),
-                DropdownMenuItem(
-                  value: 3,
-                  child: Text("Three"),
-                ),
-              ],
+              items: item,
             ),
           ),
         ),

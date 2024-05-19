@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:karim_fashion/view_models/user_view_model.dart';
 import 'package:karim_fashion/views/widgets/my_button.dart';
 import 'package:karim_fashion/views/widgets/form_input.dart';
+import 'package:provider/provider.dart';
 
 class FormLogin extends StatefulWidget {
   const FormLogin({super.key});
@@ -13,11 +15,24 @@ class FormLoginState extends State<FormLogin> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
+  bool _loading = false;
+  String _error = "";
+
   void forgotPassword() {}
 
   void submitLogin() {
-    // TODO: login
-    Navigator.pushNamedAndRemoveUntil(context, "/main", (route) => false);
+    setState(() {
+      _loading = true;
+      _error = "";
+    });
+    final nama = _emailController.text.trim();
+    final password = _passwordController.text;
+    context.read<UserViewModel>().login(nama, password).then((error) {
+      setState(() {
+        _loading = false;
+        _error = error;
+      });
+    });
   }
 
   @override
@@ -32,6 +47,12 @@ class FormLoginState extends State<FormLogin> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
+        Center(
+          child: Text(
+            _error,
+            style: const TextStyle(color: Colors.red),
+          ),
+        ),
         FormInput(
           label: "Email / Username",
           controller: _emailController,
@@ -58,6 +79,7 @@ class FormLoginState extends State<FormLogin> {
           onPressed: submitLogin,
           text: "Masuk",
           textColor: Colors.black,
+          loading: _loading,
         ),
       ],
     );
