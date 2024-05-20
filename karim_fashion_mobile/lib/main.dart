@@ -4,8 +4,10 @@ import 'package:flutter/material.dart';
 import 'package:karim_fashion/view_models/daerah_view_model.dart';
 import 'package:karim_fashion/view_models/kategori_view_model.dart';
 import 'package:karim_fashion/view_models/keranjang_view_model.dart';
+import 'package:karim_fashion/view_models/order_view_model.dart';
 import 'package:karim_fashion/view_models/produk_view_model.dart';
 import 'package:karim_fashion/view_models/user_view_model.dart';
+import 'package:karim_fashion/views/berhasil/berhasil_page.dart';
 import 'package:karim_fashion/views/checkout/checkout_page.dart';
 import 'package:karim_fashion/views/deskripsi/deskripsi_page.dart';
 import 'package:karim_fashion/views/info_akun/info_akun_page.dart';
@@ -32,6 +34,7 @@ class MyApp extends StatelessWidget {
         ChangeNotifierProvider(create: (context) => UserViewModel()),
         ChangeNotifierProvider(create: (context) => DaerahViewModel()),
         ChangeNotifierProvider(create: (context) => KategoriViewModel()),
+        ChangeNotifierProvider(create: (context) => OrderViewModel()),
       ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
@@ -62,6 +65,7 @@ class MyApp extends StatelessWidget {
           "/info_akun": (context) => const InfoAkunPage(),
           "/keamanan_akun": (context) => const KeamananAkunPage(),
           "/update_akun": (context) => const UpdateAkunPage(),
+          "/berhasil": (context) => const BerhasilPage(),
         },
       ),
     );

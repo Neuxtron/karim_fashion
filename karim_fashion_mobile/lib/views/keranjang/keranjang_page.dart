@@ -15,7 +15,6 @@ class KeranjangPage extends StatefulWidget {
 
 class _KeranjangPageState extends State<KeranjangPage> {
   bool _semua = false;
-  bool _loading = false;
 
   List<KeranjangModel> get _listKeranjang =>
       context.read<KeranjangViewModel>().listKeranjang;
@@ -65,7 +64,6 @@ class _KeranjangPageState extends State<KeranjangPage> {
         children: [
           KeranjangListView(
             updateKeranjang: updateKeranjang,
-            loading: _loading,
           ),
           Container(
             height: 70,
@@ -123,7 +121,9 @@ class _KeranjangPageState extends State<KeranjangPage> {
                           context,
                           "/checkout",
                           arguments: _listOrder,
-                        );
+                        ).then((_) {
+                          context.read<KeranjangViewModel>().getKeranjang();
+                        });
                       },
                       child: Center(
                         child: Text(

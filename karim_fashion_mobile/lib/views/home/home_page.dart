@@ -19,9 +19,10 @@ class _HomePageState extends State<HomePage> {
   int? _activeKategori;
   String _searchText = "";
 
-  void getData() {
+  void getData() async {
     context.read<KategoriViewModel>().getKategori();
-    context.read<ProdukViewModel>().getProduk();
+    await context.read<ProdukViewModel>().getProduk();
+    setState(() {});
   }
 
   void updateKategori(int kategori) {

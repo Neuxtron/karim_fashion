@@ -17,7 +17,7 @@ class KeranjangController {
           include: ["variasi"]
         }]
       }],
-      where: { idUser }
+      where: { idUser, idOrder: null }
     })
       .then((data) => {
         res.status(200).json({

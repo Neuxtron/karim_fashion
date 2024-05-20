@@ -8,7 +8,8 @@ class AppConstants {
   static const primary = Color(0xFF002C55);
   static const danger = Color(0xFFFF4A4A);
 
-  static const baseUrl = "http://192.168.18.14:3000";
+  static const baseUrl = "http://192.168.43.135:3000";
+  static const rekening = "7171717"; // TODO: rekening
   static String? token;
 }
 

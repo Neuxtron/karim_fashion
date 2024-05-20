@@ -6,22 +6,15 @@ import 'keranjang_item.dart';
 
 class KeranjangListView extends StatelessWidget {
   final Function(int index, bool isChecked, int amount) updateKeranjang;
-  final bool loading;
 
   const KeranjangListView({
     super.key,
     required this.updateKeranjang,
-    required this.loading,
   });
 
   @override
   Widget build(BuildContext context) {
     final listKeranjang = context.watch<KeranjangViewModel>().listKeranjang;
-    ;
-
-    if (loading) {
-      return const Center(child: CircularProgressIndicator());
-    }
 
     return Expanded(
       child: ListView.builder(

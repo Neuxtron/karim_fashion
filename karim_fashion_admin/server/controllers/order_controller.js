@@ -1,4 +1,6 @@
+const KeranjangModel = require("../models/keranjang_model")
 const OrderModel = require("../models/order_model")
+const StokModel = require("../models/stok_model")
 const KeranjangController = require("./keranjang_controller")
 
 class OrderController {
@@ -17,7 +19,15 @@ class OrderController {
           keranjang.idOrder = data.id
           return keranjang
         })
-        // TODO kurangi stok
+        
+        const promises = listKeranjang.map((keranjang) => {
+          return StokModel.decrement("stok", {
+            where: { id: keranjang.idStok }
+          })
+        })
+
+        await Promise.allSettled(promises)
+
         await KeranjangController.updateKeranjangLocal(listKeranjang, idUser)
         res.status(201).json({
           status: true,

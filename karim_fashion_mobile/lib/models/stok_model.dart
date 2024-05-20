@@ -10,7 +10,6 @@ class StokModel {
   });
 
   factory StokModel.fromJson(Map<String, dynamic> json) {
-    print(json);
     return StokModel(
       id: json["id"],
       nama: json["variasi"]["nama"],
