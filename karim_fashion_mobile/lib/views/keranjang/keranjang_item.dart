@@ -53,7 +53,7 @@ class KeranjangItem extends StatelessWidget {
                   color: const Color(0xFFEDEDED),
                   padding: const EdgeInsets.all(10),
                   child: Text(
-                    "Variasi: ${keranjang.ukuran}",
+                    "Variasi: ${keranjang.ukuran.nama}",
                     style: const TextStyle(color: Color(0xFF7C7C7C)),
                   ),
                 ),

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
+import 'package:karim_fashion/view_models/keranjang_view_model.dart';
 import 'package:karim_fashion/views/akun/akun_page.dart';
 import 'package:karim_fashion/views/home/home_page.dart';
+import 'package:provider/provider.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -70,7 +72,9 @@ class _MainPageState extends State<MainPage> {
         currentIndex: _currIndex,
         onTap: (index) {
           if (index == 2) {
-            Navigator.pushNamed(context, "/keranjang");
+            Navigator.pushNamed(context, "/keranjang").then((_) {
+              context.read<KeranjangViewModel>().updateKeranjang();
+            });
             return;
           }
           setState(() => _currIndex = index);

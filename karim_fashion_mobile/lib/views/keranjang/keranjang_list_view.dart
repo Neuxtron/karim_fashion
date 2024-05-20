@@ -1,22 +1,24 @@
 import 'package:flutter/material.dart';
-import 'package:karim_fashion/models/keranjang_model.dart';
+import 'package:karim_fashion/view_models/keranjang_view_model.dart';
+import 'package:provider/provider.dart';
 
 import 'keranjang_item.dart';
 
 class KeranjangListView extends StatelessWidget {
-  final List<KeranjangModel> listKeranjang;
   final Function(int index, bool isChecked, int amount) updateKeranjang;
   final bool loading;
 
   const KeranjangListView({
     super.key,
-    required this.listKeranjang,
     required this.updateKeranjang,
     required this.loading,
   });
 
   @override
   Widget build(BuildContext context) {
+    final listKeranjang = context.watch<KeranjangViewModel>().listKeranjang;
+    ;
+
     if (loading) {
       return const Center(child: CircularProgressIndicator());
     }

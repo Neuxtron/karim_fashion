@@ -17,7 +17,8 @@ class OrderController {
           keranjang.idOrder = data.id
           return keranjang
         })
-      await KeranjangController.updateKeranjangLocal(listKeranjang, idUser)
+        // TODO kurangi stok
+        await KeranjangController.updateKeranjangLocal(listKeranjang, idUser)
         res.status(201).json({
           status: true,
           message: "Berhasil membuat order",

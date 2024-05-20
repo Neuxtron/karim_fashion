@@ -50,6 +50,12 @@ class _KeranjangPageState extends State<KeranjangPage> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    context.read<KeranjangViewModel>().getKeranjang();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
@@ -58,7 +64,6 @@ class _KeranjangPageState extends State<KeranjangPage> {
       body: Column(
         children: [
           KeranjangListView(
-            listKeranjang: _listKeranjang,
             updateKeranjang: updateKeranjang,
             loading: _loading,
           ),

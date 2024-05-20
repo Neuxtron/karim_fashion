@@ -3,6 +3,7 @@ const sequelize = require("../config/database")
 const ProdukModel = require("./produk_model")
 const UserModel = require("./users_model")
 const OrderModel = require("./order_model")
+const StokModel = require("./stok_model")
 
 const KeranjangModel = sequelize.define("keranjang", {
   id: {
@@ -27,6 +28,10 @@ const KeranjangModel = sequelize.define("keranjang", {
     type: DataTypes.INTEGER,
     allowNull: true,
   },
+  idStok: {
+    type: DataTypes.INTEGER,
+    allowNull: true,
+  },
 }, {
   freezeTableName: true,
 })
@@ -34,5 +39,6 @@ const KeranjangModel = sequelize.define("keranjang", {
 KeranjangModel.belongsTo(ProdukModel, { foreignKey: "idProduk", onDelete: "CASCADE" })
 KeranjangModel.belongsTo(UserModel, { foreignKey: "idUser", onDelete: "CASCADE" })
 KeranjangModel.belongsTo(OrderModel, { foreignKey: "idOrder", onDelete: "CASCADE" })
+KeranjangModel.belongsTo(StokModel, { foreignKey: "idStok", onDelete: "CASCADE" })
 
 module.exports = KeranjangModel

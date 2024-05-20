@@ -1,12 +1,22 @@
 const KeranjangModel = require("../models/keranjang_model")
-const ProdukModel = require("../models/produk_model")
 
 class KeranjangController {
   static keranjangRiwayatByUser(req, res) {
     const idUser = req.idUser
 
     KeranjangModel.findAll({
-      include: [ProdukModel],
+      include: [
+        {
+          association: "stok",
+          include: ["variasi"]
+        },
+        {
+        association: "produk",
+        include: [{
+          association: "stok",
+          include: ["variasi"]
+        }]
+      }],
       where: { idUser }
     })
       .then((data) => {

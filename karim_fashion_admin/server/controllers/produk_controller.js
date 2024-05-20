@@ -1,13 +1,12 @@
 const { Op } = require("sequelize")
 const ProdukModel = require("../models/produk_model")
-const VariasiModel = require("../models/variasi_model")
 
 class ProdukController {
   static allProduk(req, res) {
     ProdukModel.findAll({
       include: [{
         association: "stok",
-        include: [VariasiModel],
+        include: ["variasi"],
         where: {
           stok: { [Op.gt]: 0 }
         }

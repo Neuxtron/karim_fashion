@@ -5,7 +5,7 @@ import 'package:karim_fashion/utils/app_constants.dart';
 
 class RincianSection extends StatelessWidget {
   final int totalHarga;
-  final int ongkir;
+  final int? ongkir;
 
   const RincianSection({
     super.key,
@@ -16,8 +16,13 @@ class RincianSection extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final hargaString = NumberFormat("###,###,###").format(totalHarga);
-    final ongkirString = NumberFormat("###,###,###").format(ongkir);
-    final totalString = NumberFormat("###,###,###").format(ongkir + totalHarga);
+
+    String? ongkirString;
+    String? totalString;
+    if (ongkir != null) {
+      ongkirString = NumberFormat("###,###,###").format(ongkir);
+      totalString = NumberFormat("###,###,###").format(ongkir! + totalHarga);
+    }
 
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
@@ -59,7 +64,7 @@ class RincianSection extends StatelessWidget {
                 style: TextStyle(fontSize: 12),
               ),
               Text(
-                "Rp $ongkirString",
+                "Rp ${ongkirString ?? ""}",
                 style: const TextStyle(fontSize: 12),
               ),
             ],
@@ -76,7 +81,7 @@ class RincianSection extends StatelessWidget {
                 ),
               ),
               Text(
-                "Rp $totalString",
+                "Rp ${totalString ?? ""}",
                 style: const TextStyle(
                   fontWeight: FontWeight.bold,
                   color: AppConstants.primary,

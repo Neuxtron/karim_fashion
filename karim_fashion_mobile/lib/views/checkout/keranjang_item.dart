@@ -20,32 +20,34 @@ class KeranjangItem extends StatelessWidget {
             height: 80,
             width: 100,
           ),
-          Stack(
-            children: [
-              SizedBox(
-                height: 70,
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Text(keranjang.produk.nama),
-                    Text(
-                      "Variasi: ${keranjang.ukuran}",
-                      style: TextStyle(color: Colors.black54),
-                    ),
-                    Text("Rp $hargaString"),
-                  ],
+          Expanded(
+            child: Stack(
+              children: [
+                SizedBox(
+                  height: 70,
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      Text(keranjang.produk.nama),
+                      Text(
+                        "Variasi: ${keranjang.ukuran.nama}",
+                        style: const TextStyle(color: Colors.black54),
+                      ),
+                      Text("Rp $hargaString"),
+                    ],
+                  ),
                 ),
-              ),
-              Positioned(
-                bottom: 0,
-                right: 0,
-                child: Text(
-                  "x${keranjang.amount}",
-                  style: TextStyle(color: Colors.black54),
+                Positioned(
+                  bottom: 0,
+                  right: 30,
+                  child: Text(
+                    "x${keranjang.amount}",
+                    style: const TextStyle(color: Colors.black54),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           )
         ],
       ),

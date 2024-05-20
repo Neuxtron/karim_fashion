@@ -5,11 +5,13 @@ import 'package:karim_fashion/utils/app_constants.dart';
 class SubmitSection extends StatelessWidget {
   final int totalHarga;
   final Function() onSubmit;
+  final bool loading;
 
   const SubmitSection({
     super.key,
     required this.totalHarga,
     required this.onSubmit,
+    required this.loading,
   });
 
   @override
@@ -49,9 +51,11 @@ class SubmitSection extends StatelessWidget {
           Expanded(
             child: Container(
               height: double.infinity,
-              color: AppConstants.secondary,
+              color: loading
+                  ? AppConstants.secondary.withOpacity(.5)
+                  : AppConstants.secondary,
               child: InkWell(
-                onTap: onSubmit,
+                onTap: loading ? null : onSubmit,
                 child: const Center(
                   child: Text(
                     "Buat Pesanan",

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/models/keranjang_model.dart';
 import 'package:karim_fashion/models/pembayaran_model.dart';
+import 'package:karim_fashion/view_models/daerah_view_model.dart';
 import 'package:karim_fashion/views/checkout/alamat_section.dart';
 import 'package:karim_fashion/views/checkout/keranjang_section.dart';
 import 'package:karim_fashion/views/checkout/metode_bayar_section.dart';
@@ -8,6 +9,7 @@ import 'package:karim_fashion/views/checkout/pengiriman_section.dart';
 import 'package:karim_fashion/views/checkout/rincian_section.dart';
 import 'package:karim_fashion/views/checkout/submit_section.dart';
 import 'package:karim_fashion/views/checkout/total_pesanan_section.dart';
+import 'package:provider/provider.dart';
 
 class CheckoutPage extends StatefulWidget {
   const CheckoutPage({super.key});
@@ -29,7 +31,19 @@ class _CheckoutPageState extends State<CheckoutPage> {
   ];
 
   int _indexPembayaran = 0;
-  int get _ongkir => 6000;
+  bool _loading = true;
+
+  int? get _ongkir => context.watch<DaerahViewModel>().ongkir;
+
+  void submitPesanan() {}
+
+  @override
+  void initState() {
+    super.initState();
+    context.read<DaerahViewModel>().getOngkir().then((value) {
+      setState(() => _loading = false);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -38,9 +52,7 @@ class _CheckoutPageState extends State<CheckoutPage> {
 
     int totalHarga = 0;
     for (var keranjang in listKeranjang) {
-      if (keranjang.isChecked) {
-        totalHarga += keranjang.produk.harga * keranjang.amount;
-      }
+      totalHarga += keranjang.produk.harga * keranjang.amount;
     }
 
     return Scaffold(
@@ -69,7 +81,8 @@ class _CheckoutPageState extends State<CheckoutPage> {
             ),
             SubmitSection(
               totalHarga: totalHarga,
-              onSubmit: () {},
+              loading: _loading,
+              onSubmit: submitPesanan,
             ),
           ],
         ),

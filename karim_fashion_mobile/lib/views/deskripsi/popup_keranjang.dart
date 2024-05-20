@@ -1,10 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:karim_fashion/models/keranjang_model.dart';
 import 'package:karim_fashion/models/produk_model.dart';
 import 'package:karim_fashion/models/stok_model.dart';
 import 'package:karim_fashion/utils/app_constants.dart';
+import 'package:karim_fashion/view_models/keranjang_view_model.dart';
 import 'package:karim_fashion/views/deskripsi/ukuran_item.dart';
 import 'package:karim_fashion/views/widgets/my_button.dart';
+import 'package:provider/provider.dart';
 
 class PopupKeranjang extends StatefulWidget {
   final ProdukModel produk;
@@ -28,7 +31,27 @@ class _PopupKeranjangState extends State<PopupKeranjang> {
   int _indexUkuran = 0;
   int _jumlah = 1;
 
-  void submitKeranjang() {}
+  void submitKeranjang() {
+    final keranjang = KeranjangModel(
+      produk: widget.produk,
+      ukuran: _listUkuran[_indexUkuran],
+      amount: _jumlah,
+    );
+    if (widget.langsungCheckout) {
+      Navigator.pushNamed(context, "/checkout", arguments: [keranjang])
+          .then((_) {
+        Navigator.pop(context);
+      });
+      return;
+    }
+    context
+        .read<KeranjangViewModel>()
+        .updateKeranjang(keranjang: keranjang)
+        .then((_) {
+      Navigator.pop(context);
+      Navigator.pop(context);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {

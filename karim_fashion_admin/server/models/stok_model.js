@@ -25,6 +25,6 @@ const StokModel = sequelize.define("stok", {
   freezeTableName: true,
 })
 
-StokModel.belongsTo(VariasiModel, { foreignKey: "idVariasi", onDelete: "CASCADE" })
+StokModel.belongsTo(VariasiModel, { as: "variasi", foreignKey: "idVariasi", onDelete: "CASCADE" })
 
 module.exports = StokModel
