@@ -7,6 +7,7 @@ const keranjangRouter = require("./keranjang_route")
 const userRouter = require("./user_route")
 const orderRouter = require("./order_route")
 const daerahRouter = require("./daerah_route")
+const AdminModel = require("../models/admin_model")
 
 router.use("/kategori", kategoriRouter)
 router.use("/produk", produkRouter)
