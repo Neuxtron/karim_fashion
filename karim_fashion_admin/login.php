@@ -62,7 +62,7 @@
             <h2 class="text-center">Admin Login</h2>
             <form action="authenticate.php" method="post">
                 <div class="form-group">
-                    <label for="username">Username</label>
+                    <label for="username">Email</label>
                     <input type="text" class="form-control" id="username" name="username" required>
                 </div>
                 <div class="form-group">

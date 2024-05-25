@@ -10,12 +10,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $username = $conn->real_escape_string($username);
     $password = $conn->real_escape_string($password);
 
-    $sql = "SELECT * FROM users WHERE email = '$username' AND password = '$password'";
+    $sql = "SELECT * FROM admin WHERE email = '$username' AND password = '$password'";
     $result = $conn->query($sql);
 
     if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['user_id'];
+        $_SESSION['user_id'] = $user['id'];
         header('Location: index.php');
         exit();
     } else {
