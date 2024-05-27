@@ -21,14 +21,69 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
   final _emailController = TextEditingController();
   final _noHpController = TextEditingController();
   final _alamatController = TextEditingController();
+  final _scrollController = ScrollController();
 
-  String _idProvinsi = "1";
-  String _idKecamatan = "1";
+  String _idProvinsi = "";
+  String _idKecamatan = "";
+  bool _loading = false;
+  String _error = "";
 
   List<ProvinsiModel> _listProvinsi = [];
   List<KecamatanModel> _listKecamatan = [];
 
-  void submitUpdate() {}
+  bool validate() {
+    if (_usernameController.text.isEmpty) {
+      setState(() => _error = "Username tidak boleh kosong");
+      return false;
+    }
+    if (_emailController.text.isEmpty) {
+      setState(() => _error = "Email tidak boleh kosong");
+      return false;
+    }
+    if (_noHpController.text.isEmpty) {
+      setState(() => _error = "No. HP tidak boleh kosong");
+      return false;
+    }
+    if (_alamatController.text.isEmpty) {
+      setState(() => _error = "Alamat tidak boleh kosong");
+      return false;
+    }
+    if (_idKecamatan.isEmpty) {
+      setState(() => _error = "Kecamatan tidak boleh kosong");
+      return false;
+    }
+
+    return true;
+  }
+
+  void submitUpdate() {
+    if (!validate()) {
+      _scrollController.jumpTo(0);
+      return;
+    }
+    setState(() {
+      _loading = true;
+      _error = "";
+    });
+    final user = UserModel(
+      username: _usernameController.text.trim(),
+      email: _emailController.text.trim(),
+      hp: _noHpController.text,
+      alamat: _alamatController.text.trim(),
+      idKecamatan: _idKecamatan,
+    );
+    context.read<UserViewModel>().updateProfil(user).then((error) {
+      setState(() {
+        _loading = false;
+        _error = error;
+      });
+      if (error.isNotEmpty) {
+        _scrollController.jumpTo(0);
+        return;
+      }
+      Navigator.pop(context);
+    });
+  }
 
   void getProvinsi() async {
     _listProvinsi = await context.read<DaerahViewModel>().getProvinsi();
@@ -76,6 +131,7 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
         surfaceTintColor: Colors.transparent,
       ),
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 36),
           child: Column(
@@ -89,6 +145,10 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
                 child: Image.asset("assets/images/logo.png", height: 80),
               ),
               const SizedBox(height: 16), //----- Jarak
+              Text(
+                _error,
+                style: const TextStyle(color: Colors.red),
+              ),
               FormInput(
                 label: "Username",
                 controller: _usernameController,
@@ -135,6 +195,7 @@ class _UpdateAkunPageState extends State<UpdateAkunPage> {
                 onPressed: submitUpdate,
                 margin: const EdgeInsets.only(top: 50),
                 text: "Simpan",
+                loading: _loading,
                 minWidth: double.infinity,
                 textColor: Colors.black,
               ),

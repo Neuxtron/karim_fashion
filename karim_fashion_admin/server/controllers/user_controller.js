@@ -32,6 +32,8 @@ class UserController {
     const id = req.idUser
     const data  = req.body
 
+    delete data.password
+
     UserModel.update(data, {
       where: { id }
     })

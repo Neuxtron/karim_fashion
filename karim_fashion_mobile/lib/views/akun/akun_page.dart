@@ -4,9 +4,14 @@ import 'package:karim_fashion/view_models/user_view_model.dart';
 import 'foto_profil.dart';
 import 'package:provider/provider.dart';
 
-class AkunPage extends StatelessWidget {
+class AkunPage extends StatefulWidget {
   const AkunPage({super.key});
 
+  @override
+  State<AkunPage> createState() => _AkunPageState();
+}
+
+class _AkunPageState extends State<AkunPage> {
   @override
   Widget build(BuildContext context) {
     final user = context.read<UserViewModel>().currentUser;
@@ -47,7 +52,11 @@ class AkunPage extends StatelessWidget {
                 ),
               ),
               IconButton(
-                onPressed: () => Navigator.pushNamed(context, "/update_akun"),
+                onPressed: () {
+                  Navigator.pushNamed(context, "/update_akun").then((value) {
+                    setState(() {});
+                  });
+                },
                 iconSize: 40,
                 icon: const Icon(Icons.edit_outlined),
               ),

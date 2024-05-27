@@ -66,6 +66,7 @@ class MyApp extends StatelessWidget {
           "/keamanan_akun": (context) => const KeamananAkunPage(),
           "/update_akun": (context) => const UpdateAkunPage(),
           "/berhasil": (context) => const BerhasilPage(),
+          // "/riwayat": (context) => const historyPage(),
         },
       ),
     );

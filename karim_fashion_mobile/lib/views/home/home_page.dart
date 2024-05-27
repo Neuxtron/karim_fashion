@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:karim_fashion/view_models/kategori_view_model.dart';
 import 'package:karim_fashion/view_models/produk_view_model.dart';
+import 'package:karim_fashion/views/home/home_banner.dart'; 
 import 'package:karim_fashion/views/home/home_kategori.dart';
 import 'package:karim_fashion/views/home/home_search.dart';
 import 'package:karim_fashion/views/home/produk_list_view.dart';
@@ -50,11 +51,23 @@ class _HomePageState extends State<HomePage> {
     return SingleChildScrollView(
       child: Column(
         children: [
-          HomeSearch(
-            controller: _searchController,
-            onSearch: () {
-              setState(() => _searchText = _searchController.text);
-            },
+          Padding(
+            padding: const EdgeInsets.only(top: 20.0), // Add padding here
+            child: HomeSearch(
+              controller: _searchController,
+              onSearch: () {
+                setState(() => _searchText = _searchController.text);
+              },
+            ),
+          ),
+          Padding(
+            padding: const EdgeInsets.symmetric(vertical: 20.0), // Add padding here
+            child: _searchText.isEmpty? HomeBanner(
+              searchController: _searchController,
+              onChanged: (value) {
+                setState(() => _searchText = value);
+              },
+            ):SizedBox(),
           ),
           HomeKategori(
             activeKategori: _activeKategori,

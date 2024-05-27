@@ -98,6 +98,34 @@ class UserViewModel extends ChangeNotifier {
     }
   }
 
+  Future<String> updateProfil(UserModel user) async {
+    String error = "Terjadi kesalahan, silahkan coba lagi";
+
+    try {
+      final response = await http.put(
+        Uri.parse("$_endpoint/"),
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": "Bearer $_token",
+        },
+        body: user.toJson(),
+      );
+      log("Update user:\n${response.body}");
+
+      if (response.statusCode == 200) {
+        _currentUser = user;
+        error = "";
+        notifyListeners();
+      } else {
+        error = jsonDecode(response.body)["message"];
+      }
+    } catch (e) {
+      log(e.toString());
+    }
+
+    return error;
+  }
+
   Future<bool> logout() async {
     try {
       final response = await http.get(
